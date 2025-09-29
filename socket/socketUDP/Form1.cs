@@ -22,8 +22,40 @@ namespace socketUDP
         public Form1()
         {
             InitializeComponent();
+            InitializeTimer();
         }
 
+        private void InitializeTimer()
+        {
+            timer1.Interval = 500; // tester toutes les 500 ms
+            timer1.Tick += Timer1_Tick;
+            timer1.Start();
+        }
+
+        private void Timer1_Tick(object sender, EventArgs e)
+        {
+            if (SSocketUDP != null)
+            {
+                try
+                {
+                    // Teste si des données sont disponibles à la lecture
+                    if (SSocketUDP.Available > 0)
+                    {
+                        var buffer = new byte[SSocketUDP.Available];
+                        EndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0);
+                        int received = SSocketUDP.ReceiveFrom(buffer, ref remoteEP);
+
+                        string receivedMessage = Encoding.ASCII.GetString(buffer, 0, received);
+                        textBoxRecpBig.Text += $"Message reçu de {remoteEP}: {receivedMessage}\r\n";
+                    }
+                }
+                catch (SocketException ex)
+                {
+                    MessageBox.Show("Erreur socket dans le timer: " + ex.Message);
+                    timer1.Stop();
+                }
+            }
+        }
         private void button1_Click(object sender, EventArgs e)
         {
             try
@@ -34,6 +66,7 @@ namespace socketUDP
                 ipEndPointDest = new IPEndPoint(IPAddress.Parse(textBoxDest.Text), int.Parse(textBoxIPeD.Text));
                 remoteEndPoint = (EndPoint)ipEndPointDest;
                 SSocketUDP.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 5000);
+
 
             }
             catch (System.Net.Sockets.SocketException se)

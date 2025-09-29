@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -45,6 +46,7 @@
             this.textBoxIPeD = new System.Windows.Forms.TextBox();
             this.textBoxEnvoi = new System.Windows.Forms.TextBox();
             this.textBoxRecpBig = new System.Windows.Forms.TextBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
             // 
             // button1
@@ -248,6 +250,7 @@
         private System.Windows.Forms.TextBox textBoxIPeD;
         private System.Windows.Forms.TextBox textBoxEnvoi;
         private System.Windows.Forms.TextBox textBoxRecpBig;
+        private System.Windows.Forms.Timer timer1;
     }
 }
 
