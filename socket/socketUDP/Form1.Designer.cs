@@ -39,12 +39,12 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.button5 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.textBoxRecp = new System.Windows.Forms.TextBox();
+            this.textBoxIPeR = new System.Windows.Forms.TextBox();
+            this.textBoxDest = new System.Windows.Forms.TextBox();
+            this.textBoxIPeD = new System.Windows.Forms.TextBox();
+            this.textBoxEnvoi = new System.Windows.Forms.TextBox();
+            this.textBoxRecpBig = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // button1
@@ -151,62 +151,66 @@
             this.button5.Text = "CLS";
             this.button5.UseVisualStyleBackColor = true;
             // 
-            // textBox1
+            // textBoxRecp
             // 
-            this.textBox1.Location = new System.Drawing.Point(45, 34);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 11;
+            this.textBoxRecp.Location = new System.Drawing.Point(45, 34);
+            this.textBoxRecp.Name = "textBoxRecp";
+            this.textBoxRecp.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRecp.TabIndex = 11;
+            this.textBoxRecp.Text = "127.0.0.1";
             // 
-            // textBox2
+            // textBoxIPeR
             // 
-            this.textBox2.Location = new System.Drawing.Point(164, 34);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 12;
+            this.textBoxIPeR.Location = new System.Drawing.Point(164, 34);
+            this.textBoxIPeR.Name = "textBoxIPeR";
+            this.textBoxIPeR.Size = new System.Drawing.Size(100, 20);
+            this.textBoxIPeR.TabIndex = 12;
+            this.textBoxIPeR.Text = "3031";
             // 
-            // textBox3
+            // textBoxDest
             // 
-            this.textBox3.Location = new System.Drawing.Point(45, 69);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 13;
+            this.textBoxDest.Location = new System.Drawing.Point(45, 69);
+            this.textBoxDest.Name = "textBoxDest";
+            this.textBoxDest.Size = new System.Drawing.Size(100, 20);
+            this.textBoxDest.TabIndex = 13;
+            this.textBoxDest.Text = "127.0.0.1";
             // 
-            // textBox4
+            // textBoxIPeD
             // 
-            this.textBox4.Location = new System.Drawing.Point(164, 69);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 14;
+            this.textBoxIPeD.Location = new System.Drawing.Point(164, 69);
+            this.textBoxIPeD.Name = "textBoxIPeD";
+            this.textBoxIPeD.Size = new System.Drawing.Size(100, 20);
+            this.textBoxIPeD.TabIndex = 14;
+            this.textBoxIPeD.Text = "3032";
             // 
-            // textBox5
+            // textBoxEnvoi
             // 
-            this.textBox5.Location = new System.Drawing.Point(45, 104);
-            this.textBox5.Multiline = true;
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(264, 68);
-            this.textBox5.TabIndex = 15;
+            this.textBoxEnvoi.Location = new System.Drawing.Point(45, 104);
+            this.textBoxEnvoi.Multiline = true;
+            this.textBoxEnvoi.Name = "textBoxEnvoi";
+            this.textBoxEnvoi.Size = new System.Drawing.Size(264, 68);
+            this.textBoxEnvoi.TabIndex = 15;
             // 
-            // textBox6
+            // textBoxRecpBig
             // 
-            this.textBox6.Location = new System.Drawing.Point(45, 190);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox6.Size = new System.Drawing.Size(264, 188);
-            this.textBox6.TabIndex = 16;
+            this.textBoxRecpBig.Location = new System.Drawing.Point(45, 190);
+            this.textBoxRecpBig.Multiline = true;
+            this.textBoxRecpBig.Name = "textBoxRecpBig";
+            this.textBoxRecpBig.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBoxRecpBig.Size = new System.Drawing.Size(264, 188);
+            this.textBoxRecpBig.TabIndex = 16;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(482, 387);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox4);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.textBoxRecpBig);
+            this.Controls.Add(this.textBoxEnvoi);
+            this.Controls.Add(this.textBoxIPeD);
+            this.Controls.Add(this.textBoxDest);
+            this.Controls.Add(this.textBoxIPeR);
+            this.Controls.Add(this.textBoxRecp);
             this.Controls.Add(this.button5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -238,12 +242,12 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox textBoxRecp;
+        private System.Windows.Forms.TextBox textBoxIPeR;
+        private System.Windows.Forms.TextBox textBoxDest;
+        private System.Windows.Forms.TextBox textBoxIPeD;
+        private System.Windows.Forms.TextBox textBoxEnvoi;
+        private System.Windows.Forms.TextBox textBoxRecpBig;
     }
 }
 

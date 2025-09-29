@@ -14,20 +14,11 @@ namespace socketUDP
 {
     public partial class Form1 : Form
     {
-        private
-            Socket SSocketUDP;
-            Button buttonSocket;
-            Button buttonClose;
-            Button buttonSendTo;
-            Button ReceiveFrom;
-            Button CLS;
-            TextBox textboxRecp;
-            TextBox textboxDest;
-            TextBox textboxIPeR;
-            TextBox textboxIPeD;
-            TextBox textboxEnvoi;
-            TextBox textboxRecpBig;
-        
+        private Socket SSocketUDP;
+        private IPEndPoint ipEndPointReceive;
+        private IPEndPoint ipEndPointDest;
+        private EndPoint remoteEndPoint;
+
         public Form1()
         {
             InitializeComponent();
@@ -35,37 +26,47 @@ namespace socketUDP
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SSocketUDP = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            try
+            {
+                SSocketUDP = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                ipEndPointReceive = new IPEndPoint(IPAddress.Parse(this.textBoxRecp.Text), int.Parse(textBoxIPeR.Text));
+                SSocketUDP.Bind(ipEndPointReceive);
+                ipEndPointDest = new IPEndPoint(IPAddress.Parse(textBoxDest.Text), int.Parse(textBoxIPeD.Text));
+                remoteEndPoint = (EndPoint)ipEndPointDest;
 
-            //connection sur le serveur127.0.0.1 port 80 
-            IPEndPoint iped = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 80);
+            }
+            catch (System.Net.Sockets.SocketException se)
+            {
+                this.textBoxRecpBig.Text += "Message d’erreur : " + se.ToString();
+            }
 
-            SSocketUDP.Connect(iped);
+            MessageBox.Show("Socket créé et lié avec succès! ");
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            SSocketUDP.Shutdown(SocketShutdown.Both);
             SSocketUDP.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // envoie la demande de page au serveur web 
+            SSocketUDP.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 5000);
+            var messageEnvoi = Encoding.ASCII.GetBytes("GET / HTTP/1.1\r\nHost: 127.0.0.1\r\n\r\n");
 
-            SSocketUDP.SetSocketOption(SocketOptionLevel.Socket,
-            SocketOptionName.ReceiveTimeout, 5000);
-            var messageEnvoi = Encoding.ASCII.GetBytes("GET /\r\n\r\n");
+            // Destination IP et port (exemple 127.0.0.1:80)
+            IPEndPoint iped = new IPEndPoint(IPAddress.Parse("127.0.0.1"), 80);
 
-            SSocketUDP.Send(messageEnvoi);
+            // Envoi du message avec SendTo
+            SSocketUDP.SendTo(messageEnvoi, iped);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             var messageRecu = new byte[1024];
-            int nbcarrecu = SSocketUDP.Receive(messageRecu);
-            this.textboxRecpBig.Text = "nbcarecu " + nbcarrecu + "\n" +
-                         Encoding.ASCII.GetString(messageRecu, 0, nbcarrecu);
+            EndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0); // pour récupérer l'adresse de l'expéditeur
+
+            int nbcarrecu = SSocketUDP.ReceiveFrom(messageRecu, ref remoteEP);
+            this.textBoxRecpBig.Text = "nbcarecu " + nbcarrecu + "\n" + Encoding.ASCII.GetString(messageRecu, 0, nbcarrecu);
         }
     }
 }
