@@ -33,6 +33,7 @@ namespace socketUDP
                 SSocketUDP.Bind(ipEndPointReceive);
                 ipEndPointDest = new IPEndPoint(IPAddress.Parse(textBoxDest.Text), int.Parse(textBoxIPeD.Text));
                 remoteEndPoint = (EndPoint)ipEndPointDest;
+                SSocketUDP.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReceiveTimeout, 5000);
 
             }
             catch (System.Net.Sockets.SocketException se)
